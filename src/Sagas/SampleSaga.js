@@ -5,7 +5,6 @@ import Types from "../Actions/_Types";
 import { runSampleAction2 } from "../Actions/SampleActions";
 
 function* sampleSagaFunction(action) {
-    console.log(action);
     yield put(runSampleAction2());
 }
 

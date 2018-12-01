@@ -7,11 +7,10 @@ import { runSampleAction } from "./Actions/SampleActions";
 
 class Test extends React.Component {
     componentDidMount = () => {
-        this.props.go();
+        this.props.runSampleAction();
     }
 
     render() {
-        console.log("hello");
         return (<div>Hello world</div>);
     }
 }
@@ -19,7 +18,7 @@ class Test extends React.Component {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-    go: () => dispatch(runSampleAction())
+    runSampleAction: () => dispatch(runSampleAction())
 });
 
 Test.propTypes = {
