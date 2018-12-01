@@ -1,0 +1,4 @@
+export default {
+    SAMPLE_ACTION: "SAMPLE_ACTION",
+    SAMPLE_ACTION2: "SAMPLE_ACTION2"
+};
