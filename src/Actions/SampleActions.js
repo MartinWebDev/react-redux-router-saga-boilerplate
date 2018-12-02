@@ -7,3 +7,7 @@ export const runSampleAction = () => ({
 export const runSampleAction2 = () => ({
     type: Types.SAMPLE_ACTION2
 });
+
+export const redirectFromSaga = () => ({
+    type: Types.RETURN_HOME
+});
