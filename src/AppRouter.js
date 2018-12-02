@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Provider } from "react-redux"
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
 
 import PropTypes from 'prop-types';
 
@@ -12,9 +13,9 @@ const Index = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
 const Users = () => <h2>Users</h2>;
 
-const AppRouter = ({ store }) => (
+const AppRouter = ({ store, history }) => (
     <Provider store={store}>
-        <Router>
+        <ConnectedRouter history={history}>
             <div>
                 <nav>
                     <ul>
@@ -38,12 +39,13 @@ const AppRouter = ({ store }) => (
                 <Route path="/users/" component={Users} />
                 <Route path="/test/" component={Test} />
             </div>
-        </Router>
+        </ConnectedRouter>
     </Provider>
 );
 
 AppRouter.propTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default AppRouter;

@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 
 import SampleReducer from './SampleReducer';
 
-const Reducer = combineReducers({
+export default (history) => combineReducers({
+    router: connectRouter(history),
     SampleReducer
 });
-
-export default Reducer;

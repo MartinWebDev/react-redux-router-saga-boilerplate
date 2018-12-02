@@ -4,7 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createLogger } from "redux-logger";
 
@@ -17,6 +17,10 @@ import rootSaga from "./Sagas";
 // Components
 import AppRouter from './AppRouter';
 
+// History/Connected-React-Router (for redux)
+import { createBrowserHistory } from "history";
+import { routerMiddleware } from "connected-react-router";
+
 // Styles
 import './index.scss';
 
@@ -26,11 +30,24 @@ import './index.scss';
 // Setup Redux and middleware
 const sagaMiddleware = createSagaMiddleware();
 const logger = createLogger({});
-const store = createStore(reducers, applyMiddleware(sagaMiddleware, logger));
+
+// Setup connected router
+const history = createBrowserHistory();
+
+// Setup store
+const store = createStore(
+    reducers(history),
+    compose(applyMiddleware(routerMiddleware(history), sagaMiddleware, logger))
+);
+
+// Run middleware(s)
 sagaMiddleware.run(rootSaga);
 
 
-ReactDOM.render(<AppRouter store={store} />, document.getElementById('root'));
+ReactDOM.render(
+    <AppRouter store={store} history={history} />,
+    document.getElementById('root')
+);
 
 
 

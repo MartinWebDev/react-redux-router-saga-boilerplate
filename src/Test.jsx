@@ -1,7 +1,9 @@
 import React from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
-import PropTypes from 'prop-types';
+import { push } from "connected-react-router";
+
+import PropTypes from "prop-types";
 
 import { runSampleAction } from "./Actions/SampleActions";
 
@@ -11,18 +13,24 @@ class Test extends React.Component {
     }
 
     render() {
-        return (<div>Hello world</div>);
+        return (
+            <div>
+                Hello world <br />
+                <button onClick={() => { this.props.push("/"); }}>Go Home!</button>
+            </div>
+        );
     }
 }
 
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-    runSampleAction: () => dispatch(runSampleAction())
+    runSampleAction: () => dispatch(runSampleAction()),
+    push: (path) => dispatch(push(path))
 });
 
 Test.propTypes = {
-    go: PropTypes.func.isRequired
+    runSampleAction: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Test);
